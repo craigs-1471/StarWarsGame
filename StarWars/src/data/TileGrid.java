@@ -84,6 +84,14 @@ public class TileGrid {
 		}
 	}
 	
+	public void setTile(int xCoord, int yCoord, TileType type) {
+		map[xCoord][yCoord] = new Tile(xCoord * 64, yCoord * 64, 64, 64, type);
+	}
+	
+	public Tile getTile(int xCoord, int yCoord) {
+		return map[xCoord][yCoord];
+	}
+	
 	public void draw() {
 		for(int i = 0; i < map.length; i++) {
 			for(int j = 0; j < map[i].length; j++) {
@@ -92,5 +100,4 @@ public class TileGrid {
 			}
 		}
 	}
-	
 }
