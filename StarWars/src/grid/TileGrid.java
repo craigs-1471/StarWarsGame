@@ -1,4 +1,4 @@
-package data;
+package grid;
 import static helper.Artist.*;
 
 public class TileGrid {

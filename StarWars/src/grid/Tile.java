@@ -1,4 +1,4 @@
-package data;
+package grid;
 
 import org.newdawn.slick.opengl.Texture;
 import static helper.Artist.*;

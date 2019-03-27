@@ -3,6 +3,7 @@ package data;
 import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.Texture;
 
+import grid.TileGrid;
 import helper.Artist;
 
 import static org.lwjgl.opengl.GL11.*;
