@@ -6,6 +6,7 @@ import org.newdawn.slick.opengl.Texture;
 import grid.TileGrid;
 import helper.Artist;
 import ships.Player;
+import static grid.TileGrid.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -18,22 +19,15 @@ public class Boot {
 	public Boot() {
 		
 		beginSession();
-		Random random = new Random();
-		int gridWidth = Artist.WIDTH;
-		int gridHeight = Artist.HEIGHT;
-		int[][] map = new int[gridWidth][gridHeight];
-		for(int i = 0; i < map.length; i++) {
-			for(int j = 0; j < map[i].length; j++) {
-				int randInt = random.nextInt(20) + 1;
-				map[i][j] = randInt;
-			}
-		}
-
+		int[][] map = randomGridGenerator();
 		TileGrid grid = new TileGrid(map);
-		Player p = new Player(quickLoad("x-wing"), grid.getTile(10, 10), 64, 64);
+		// Player p = new Player(quickLoad("x-wing"), grid.getTile(10, 10), 64, 64);
+		Player p = new Player(quickLoad("x-wing"), grid, 64, 64);
 		while(!Display.isCloseRequested()) {
 			grid.draw();
 			p.draw();
+			p.movePlayer();
+			
 			Display.update();
 			Display.sync(60);
 		}

@@ -15,6 +15,7 @@ import java.io.InputStream;
 public class Artist {
 	
 	public static final int WIDTH = 1280, HEIGHT = 960;
+	public static final int GRID_WIDTH = 20, GRID_HEIGHT = 15;
 	
 	public static void beginSession() {
 		Display.setTitle("Star Wars");
@@ -75,5 +76,22 @@ public class Artist {
 		tex = loadTexture("resources/" + name + ".png", "PNG");
 		return tex;
 	}
+
+	public static int getWidth() {
+		return WIDTH;
+	}
+
+	public static int getHeight() {
+		return HEIGHT;
+	}
+
+	public static int getGridWidth() {
+		return GRID_WIDTH;
+	}
+
+	public static int getGridHeight() {
+		return GRID_HEIGHT;
+	}
+	
 	
 }

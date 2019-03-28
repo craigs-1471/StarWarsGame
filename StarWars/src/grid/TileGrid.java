@@ -1,12 +1,18 @@
 package grid;
 import static helper.Artist.*;
 
+import java.util.Random;
+
+import helper.Artist;
+
 public class TileGrid {
 	
 	public Tile[][] map;
 	
 	public TileGrid() {
-		map = new Tile[20][15];
+		int width = Artist.getGridWidth();
+		int height = Artist.getGridHeight();
+		map = new Tile[width][height];
 		for(int i = 0; i < map.length; i++) {
 			for(int j = 0; j < map[i].length; j++) {
 				map[i][j] = new Tile(i * 64, j * 64, 64, 64, TileType.Space1);
@@ -14,11 +20,27 @@ public class TileGrid {
 		}
 	}
 	
-	public TileGrid(int[][] newMap) {
-		map = new Tile[20][15];
+	public static int[][] randomGridGenerator() {
+		Random random = new Random();
+		int width = Artist.getGridWidth();
+		int height = Artist.getGridHeight();
+		int[][] map = new int[width][height];
 		for(int i = 0; i < map.length; i++) {
 			for(int j = 0; j < map[i].length; j++) {
-				switch (newMap[j][i]) {
+				int randInt = random.nextInt(20) + 1;
+				map[i][j] = randInt;
+			}
+		}
+		return map;
+	}
+	
+	public TileGrid(int[][] newMap) {
+		int width = Artist.getGridWidth();
+		int height = Artist.getGridHeight();
+		map = new Tile[width][height];
+		for(int i = 0; i < map.length; i++) {
+			for(int j = 0; j < map[i].length; j++) {
+				switch (newMap[i][j]) {
 				case 1:
 					map[i][j] = new Tile(i * 64, j * 64, 64, 64, TileType.Space1);
 					break;
@@ -82,10 +104,19 @@ public class TileGrid {
 				}
 			}
 		}
-	}
+	}  
 	
 	public void setTile(int xCoord, int yCoord, TileType type) {
 		map[xCoord][yCoord] = new Tile(xCoord * 64, yCoord * 64, 64, 64, type);
+	}
+	
+	public Tile getRandomTile() {
+		Random rand = new Random();
+		int width = Artist.getGridWidth();
+		int height = Artist.getGridHeight();
+		int x = rand.nextInt(width) ;
+		int y = rand.nextInt(height);
+		return map[x][y];
 	}
 	
 	public Tile getTile(int xCoord, int yCoord) {
@@ -99,5 +130,13 @@ public class TileGrid {
 				drawQuadTex(t.getTexture(), t.getX(), t.getY(), t.getWidth(), t.getHeight());
 			}
 		}
+	}
+
+	public Tile[][] getMap() {
+		return map;
+	}
+
+	public void setMap(Tile[][] map) {
+		this.map = map;
 	}
 }
